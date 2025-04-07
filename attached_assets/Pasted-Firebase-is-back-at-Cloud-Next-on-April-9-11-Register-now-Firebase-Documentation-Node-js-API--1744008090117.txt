@@ -1,0 +1,117 @@
+Firebase is back at Cloud Next on April 9 - 11. Register now.
+Firebase
+Documentation
+Node.js API reference
+Reference
+Was this helpful?
+
+Send feedback
+firebase. app. App
+
+bookmark_border
+A Firebase App holds the initialization information for a collection of services.
+
+Do not call this constructor directly. Instead, use firebase.initializeApp() to create an app.
+
+Index
+Properties
+automaticDataCollectionEnabled
+name
+options
+Methods
+appCheck
+auth
+database
+delete
+firestore
+functions
+storage
+Properties
+automaticDataCollectionEnabled
+automaticDataCollectionEnabled: boolean
+The settable config flag for GDPR opt-in/opt-out
+
+name
+name: string
+The (read-only) name for this app.
+
+The default app's name is "[DEFAULT]".
+
+example
+// The default app's name is "[DEFAULT]"
+firebase.initializeApp(defaultAppConfig);
+console.log(firebase.app().name);  // "[DEFAULT]"
+example
+// A named app's name is what you provide to initializeApp()
+var otherApp = firebase.initializeApp(otherAppConfig, "other");
+console.log(otherApp.name);  // "other"
+options
+options: Object
+The (read-only) configuration options for this app. These are the original parameters given in firebase.initializeApp().
+
+example
+var app = firebase.initializeApp(config);
+console.log(app.options.databaseURL === config.databaseURL);  // true
+Methods
+appCheck
+appCheck ( ) : firebase.appCheck.AppCheck
+Returns firebase.appCheck.AppCheck
+auth
+auth ( ) : Auth
+Gets the Auth service for the current app.
+
+example
+var auth = app.auth();
+// The above is shorthand for:
+// var auth = firebase.auth(app);
+Returns Auth
+database
+database ( url ? :  string ) : Database
+Gets the Database service for the current app.
+
+example
+var database = app.database();
+// The above is shorthand for:
+// var database = firebase.database(app);
+Parameters
+Optional url: string
+Returns Database
+delete
+delete ( ) : Promise < any >
+Renders this app unusable and frees the resources of all associated services.
+
+example
+app.delete()
+  .then(function() {
+    console.log("App deleted successfully");
+  })
+  .catch(function(error) {
+    console.log("Error deleting app:", error);
+  });
+Returns Promise<any>
+firestore
+firestore ( ) : Firestore
+Returns Firestore
+functions
+functions ( regionOrCustomDomain ? :  string ) : Functions
+Parameters
+Optional regionOrCustomDomain: string
+Returns Functions
+storage
+storage ( url ? :  string ) : Storage
+Gets the Storage service for the current app, optionally initialized with a custom storage bucket.
+
+example
+var storage = app.storage();
+// The above is shorthand for:
+// var storage = firebase.storage(app);
+example
+var storage = app.storage("gs://your-app.appspot.com");
+Parameters
+Optional url: string
+The gs:// url to your Firebase Storage Bucket. If not passed, uses the app's default Storage Bucket.
+
+Returns Storage
+Was this helpful?
+
+Send feedback

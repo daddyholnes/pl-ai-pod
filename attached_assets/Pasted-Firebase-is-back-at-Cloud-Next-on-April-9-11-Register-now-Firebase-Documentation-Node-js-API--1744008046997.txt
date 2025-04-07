@@ -1,0 +1,122 @@
+Firebase is back at Cloud Next on April 9 - 11. Register now.
+Firebase
+Documentation
+Node.js API reference
+Reference
+Was this helpful?
+
+Send feedback
+
+bookmark_border
+Firebase JavaScript SDK Reference For Node.js
+The Firebase JavaScript SDK implements the client-side libraries used by applications using Firebase services. This SDK is distributed via:
+
+CDN
+npm package
+To get started using Firebase, see Add Firebase to your JavaScript Project.
+
+For source code, see the Firebase JavaScript SDK Github repo.
+
+API Reference
+firebase
+FirebaseError
+FirebaseIdToken
+firebase.app
+App
+firebase.auth
+Auth
+ActionCodeInfo
+ActionCodeURL
+ApplicationVerifier
+AuthCredential
+AuthError
+AuthProvider
+AuthSettings
+Config
+ConfirmationResult
+EmailAuthProvider
+EmulatorConfig
+Error
+FacebookAuthProvider
+GithubAuthProvider
+GoogleAuthProvider
+IdTokenResult
+MultiFactorAssertion
+MultiFactorError
+MultiFactorInfo
+MultiFactorResolver
+MultiFactorSession
+PhoneAuthCredential
+PhoneMultiFactorAssertion
+PhoneMultiFactorEnrollInfoOptions
+PhoneMultiFactorGenerator
+PhoneMultiFactorInfo
+PhoneMultiFactorSignInInfoOptions
+PhoneSingleFactorInfoOptions
+MultiFactorUser
+OAuthCredential
+OAuthCredentialOptions
+OAuthProvider
+PhoneAuthProvider
+SAMLAuthProvider
+TwitterAuthProvider
+User
+UserInfo
+UserMetadata
+firebase.database
+DataSnapshot
+Database
+OnDisconnect
+Query
+Reference
+ServerValue
+ThenableReference
+TransactionResult
+firebase.firestore
+Blob
+CollectionReference
+DocumentChange
+DocumentReference
+DocumentSnapshot
+FieldPath
+FieldValue
+Firestore
+FirestoreDataConverter
+FirestoreError
+GeoPoint
+GetOptions
+LoadBundleTask
+LoadBundleTaskProgress
+PersistenceSettings
+Query
+QueryDocumentSnapshot
+QuerySnapshot
+SetOptions
+Settings
+SnapshotListenOptions
+SnapshotMetadata
+SnapshotOptions
+Timestamp
+Transaction
+WriteBatch
+firebase.functions
+Functions
+HttpsCallable
+HttpsCallableOptions
+HttpsCallableResult
+HttpsError
+firebase.storage
+FirebaseStorageError
+FullMetadata
+ListOptions
+ListResult
+Reference
+SettableMetadata
+Storage
+StorageObserver
+UploadMetadata
+UploadTask
+UploadTaskSnapshot
+Was this helpful?
+
+Send feedback

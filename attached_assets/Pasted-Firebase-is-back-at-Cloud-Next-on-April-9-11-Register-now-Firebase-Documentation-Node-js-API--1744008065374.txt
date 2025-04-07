@@ -1,0 +1,164 @@
+Firebase is back at Cloud Next on April 9 - 11. Register now.
+Firebase
+Documentation
+Node.js API reference
+Reference
+Was this helpful?
+
+Send feedback
+firebase
+
+bookmark_border
+firebase is a global namespace from which all Firebase services are accessed.
+
+Index
+Modules
+User
+app
+auth
+database
+firestore
+functions
+storage
+Interfaces
+FirebaseError
+FirebaseIdToken
+UserInfo
+Type aliases
+EmulatorMockTokenOptions
+FirebaseSignInProvider
+LogLevel
+Variables
+SDK_VERSION
+apps
+Functions
+appCheck
+initializeApp
+onLog
+registerVersion
+setLogLevel
+Type aliases
+EmulatorMockTokenOptions
+EmulatorMockTokenOptions: { user_id: string } | { sub: string } & Partial<FirebaseIdToken>
+FirebaseSignInProvider
+FirebaseSignInProvider: "custom" | "email" | "password" | "phone" | "anonymous" | "google.com" | "facebook.com" | "github.com" | "twitter.com" | "microsoft.com" | "apple.com"
+LogLevel
+LogLevel: "debug" | "verbose" | "info" | "warn" | "error" | "silent"
+The JS SDK supports 5 log levels and also allows a user the ability to silence the logs altogether.
+
+The order is as follows: silent < debug < verbose < info < warn < error
+
+Variables
+SDK_VERSION
+SDK_VERSION: string
+The current SDK version.
+
+apps
+apps: App[]
+A (read-only) array of all initialized apps.
+
+Functions
+appCheck
+appCheck ( app ? :  App ) : firebase.appCheck.AppCheck
+Parameters
+Optional app: App
+Returns firebase.appCheck.AppCheck
+initializeApp
+initializeApp ( options :  Object ,  name ? :  string ) : App
+Creates and initializes a Firebase app instance.
+
+See Add Firebase to your app and Initialize multiple projects for detailed documentation.
+
+example
+
+
+// Initialize default app
+// Retrieve your own options values by adding a web app on
+// https://console.firebase.google.com
+firebase.initializeApp({
+  apiKey: "AIza....",                             // Auth / General Use
+  appId: "1:27992087142:web:ce....",              // General Use
+  projectId: "my-firebase-project",               // General Use
+  authDomain: "YOUR_APP.firebaseapp.com",         // Auth with popup/redirect
+  databaseURL: "https://YOUR_APP.firebaseio.com", // Realtime Database
+  storageBucket: "YOUR_APP.appspot.com",          // Storage
+  messagingSenderId: "123456789",                 // Cloud Messaging
+  measurementId: "G-12345"                        // Analytics
+});
+example
+
+
+// Initialize another app
+var otherApp = firebase.initializeApp({
+  apiKey: "AIza....",
+  appId: "1:27992087142:web:ce....",
+  projectId: "my-firebase-project",
+  databaseURL: "https://<OTHER_DATABASE_NAME>.firebaseio.com",
+  storageBucket: "<OTHER_STORAGE_BUCKET>.appspot.com"
+}, "nameOfOtherApp");
+Parameters
+options: Object
+Options to configure the app's services.
+
+Optional name: string
+Optional name of the app to initialize. If no name is provided, the default is "[DEFAULT]".
+
+Returns App
+The initialized app.
+
+onLog
+onLog ( logCallback :  ( callbackParams :  { args : any [] ; level : LogLevel ; message : string ; type : string } ) => void ,  options ? :  { level : LogLevel } ) : void
+Sets log handler for all Firebase packages.
+
+Parameters
+logCallback: (callbackParams: { args: any[]; level: LogLevel; message: string; type: string }) => void
+An optional custom log handler that executes user code whenever the Firebase SDK makes a logging call.
+
+(callbackParams: { args: any[]; level: LogLevel; message: string; type: string }): void
+Parameters
+callbackParams: { args: any[]; level: LogLevel; message: string; type: string }
+args: any[]
+The raw arguments passed to the log call.
+
+level: LogLevel
+Level of event logged.
+
+message: string
+Any text from logged arguments joined into one string.
+
+type: string
+A string indicating the name of the package that made the log call, such as @firebase/firestore.
+
+Returns void
+Optional options: { level: LogLevel }
+level: LogLevel
+Threshhold log level. Only logs at or above this level trigger the logCallback passed to onLog.
+
+Returns void
+registerVersion
+registerVersion ( library :  string ,  version :  string ,  variant ? :  string ) : void
+Registers a library's name and version for platform logging purposes.
+
+Parameters
+library: string
+Name of 1p or 3p library (e.g. firestore, angularfire)
+
+version: string
+Current version of that library.
+
+Optional variant: string
+Bundle variant, e.g., node, rn, etc.
+
+Returns void
+setLogLevel
+setLogLevel ( logLevel :  LogLevel ) : void
+Sets log level for all Firebase packages.
+
+All of the log types above the current log level are captured (i.e. if you set the log level to info, errors are logged, but debug and verbose logs are not).
+
+Parameters
+logLevel: LogLevel
+Returns void
+Was this helpful?
+
+Send feedback

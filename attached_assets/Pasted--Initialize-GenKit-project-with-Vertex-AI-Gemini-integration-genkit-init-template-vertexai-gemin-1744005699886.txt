@@ -1,0 +1,128 @@
+# Initialize GenKit project with Vertex AI/Gemini integration
+genkit init --template vertexai-gemini
+javascript
+// config/models.js
+export const modelConfigs = {
+  geminiPro: {
+    adapter: '@genkit-ai/vertexai',
+    model: 'gemini-1.5-pro',
+    config: {
+      projectId: process.env.GOOGLE_CLOUD_PROJECT,
+      location: 'us-central1'
+    }
+  },
+  geminiFlash: {
+    adapter: '@genkit-ai/googleai',
+    model: 'gemini-1.5-flash',
+    apiKey: process.env.GEMINI_API_KEY
+  },
+  mistral: {
+    adapter: '@genkit-ai/mistral',
+    apiKey: process.env.MISTRAL_API_KEY
+  }
+};
+typescript
+// lib/sandbox.ts
+import { CodeSandboxSDK } from '@codesandbox/sdk';
+
+const sandbox = new CodeSandboxSDK({
+  vmConfig: {
+    memory: '8GB',
+    storage: '50GB',
+    runtime: 'node20'
+  },
+  security: {
+    isolation: 'microvm',
+    networkPolicy: 'restricted'
+  }
+});
+
+export const aiSandbox = {
+  createSession: async (template = 'genkit-default') => {
+    return sandbox.create({
+      template,
+      envVariables: {
+        GEMINI_API_KEY: process.env.GEMINI_API_KEY,
+        VERTEXAI_CREDS: Buffer.from(process.env.VERTEXAI_CREDS).toString('base64')
+      }
+    });
+  },
+  snapshotSession: async (sessionId) => {
+    return sandbox.snapshot(sessionId);
+  }
+};
+bash
+# Create new extension template
+genkit extension create my-extension --type=vertexai-plugin
+text
+# .github/workflows/deploy.yml
+name: AI Studio Deployment
+
+jobs:
+  deploy-sandbox:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: codesandbox/ci@v3
+      with:
+        sandbox_name: ai-studio-${{ github.sha }}
+        config: .codesandbox/sandbox.config.json
+    - uses: google-github-actions/deploy-cloud-run@v1
+      with:
+        service: ai-studio-backend
+        image: gcr.io/${{ vars.GCP_PROJECT }}/genkit-server
+javascript
+// lib/monitoring.js
+import { genkit } from 'genkit';
+import { StackdriverMetrics } from '@genkit-ai/google-cloud';
+
+genkit.configure({
+  telemetry: {
+    metrics: new StackdriverMetrics(),
+    traces: true,
+    logs: true
+  }
+});
+javascript
+const activeModel = await getRemoteConfigValue('active_llm_model');
+typescript
+app.use(validateAppCheck);
+javascript
+const imageRef = storage.bucket('my-ai-studio').file('user-uploads/image.jpg');
+bash
+# Local development with hot-reload
+genkit dev --port 4000 --watch
+
+# Production deployment
+genkit deploy --project my-ai-studio --region us-central1
+To create a locally hostable AI studio with GenKit/Vertex AI integration and CodeSandbox-like extensibility, here's an implementation blueprint using your Gemini API key and Vertex AI credentials:
+
+Core Environment Configuration
+Copilot Prompt:
+"Initialize a GenKit project with Vertex AI integration and Gemini 1.5 Pro as default model, using service account credentials from ./vertexai-creds.json"
+
+Multi-Model Configuration
+Sandbox Orchestration Layer
+Extension Development Setup
+Copilot Prompt:
+"Generate a GenKit extension template that adds PDF processing capabilities using Gemini 1.5 Pro's 1M token context window"
+
+CI/CD Pipeline Configuration
+Real-Time Monitoring Setup
+Key integration points:
+
+Model Switching - Use Firebase Remote Config for dynamic model selection
+
+Secure API Gateway - Implement Firebase App Check for endpoint protection
+
+Multi-Modal Processing - Integrate Cloud Storage for large file handling
+To start developing:
+Recommended Extension Patterns:
+
+Code completion using CCCI methodology
+
+Real-time collaboration via CRDTs
+
+Model performance benchmarking suite
+
+Privacy-preserving federated learning adapter
+This architecture provides enterprise-grade capabilities while maintaining local development flexibility. The CodeSandbox SDK integration enables secure testing of AI-generated code with instant snapshotting capabilities.
